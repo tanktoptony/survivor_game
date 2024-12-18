@@ -1,9 +1,5 @@
-import pygame
-from os.path import join
-from os import walk
-
-WINDOW_WIDTH, WINDOW_HEIGHT = 1280, 720
-TILE_SIZE = 64
+from settings import *
+from player import Player
 
 class Game:
     def __init__(self):
@@ -12,6 +8,11 @@ class Game:
         pygame.display.set_caption('Survivor')
         self.clock = pygame.time.Clock()
         self.running = True
+
+        self.player = Player((400, 300), self.all_sprites)
+
+        # groups
+        self.all_sprites = pygame.sprite.Group()
 
     def run(self):
         while self.running:
@@ -23,11 +24,13 @@ class Game:
                 if event.type == pygame.QUIT:
                     self.running = False
             # update
+
+
+            # draw
             pygame.display.update()
 
         pygame.quit()
 
-game = Game()
-game.run()
-
-            # draw
+if __name__ == '__main__':
+    game = Game()
+    game.run()
